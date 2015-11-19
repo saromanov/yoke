@@ -29,7 +29,8 @@ func memberDemote(ccmd *cobra.Command, args []string) {
 	// create an RPC client that will connect to the designated node
 	client, err := rpc.Dial("tcp", fmt.Sprintf("%s:%s", fHost, fPort))
 	if err != nil {
-		fmt.Printf("[commands/memberDemote] rpc.Dial() failed - %s\n", err.Error())
+		fmt.Errorf("[commands/memberDemote] rpc.Dial() failed - %s\n", err.Error())
+		return
 	}
 	defer client.Close()
 
